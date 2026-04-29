@@ -1,0 +1,183 @@
+.faculty-manager {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.fm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.fm-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 2rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-delete {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+  background: #ff3838;
+  transform: scale(1.05);
+}
+
+/* Form */
+.faculty-form {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.faculty-form input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.faculty-form input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.faculty-form button {
+  grid-column: 1 / -1;
+}
+
+/* Faculty Container */
+.faculty-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Table */
+.faculty-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.faculty-table thead {
+  background: #f5f7fa;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.faculty-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.faculty-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  color: #666;
+}
+
+.faculty-table tbody tr:hover {
+  background: #f9f9f9;
+  transition: background 0.2s;
+}
+
+/* Messages */
+.loading,
+.empty,
+.error-message {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+.loading {
+  color: #667eea;
+  background: #f0f4ff;
+}
+
+.empty {
+  color: #999;
+  background: #fafafa;
+  border: 1px dashed #ddd;
+}
+
+.error-message {
+  background: #ffe0e0;
+  color: #d32f2f;
+  border-left: 4px solid #d32f2f;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fm-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .fm-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .faculty-form {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-table {
+    font-size: 0.9rem;
+  }
+
+  .faculty-table th,
+  .faculty-table td {
+    padding: 0.75rem;
+  }
+}

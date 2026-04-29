@@ -1,7 +1,13 @@
-export default function App() {
+import { useState } from 'react'
+import FacultyManager from './components/FacultyManager'
+import './App.css'
+
+function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <h1 className="text-3xl font-bold text-gray-800">Hello World</h1>
+    <div className="app">
+      <FacultyManager />
     </div>
-  );
+  )
 }
+
+export default App
