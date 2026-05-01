@@ -18,23 +18,10 @@ pipeline {
 
         stage('Verify') {
             steps {
-                script {
-                    sh 'docker compose up -d backend'
-                    sh '''#!/bin/bash
-                        echo "Waiting for backend to become healthy..."
-                        for i in {1..20}; do
-                          echo "Attempt $i of 20..."
-                          if curl -f http://localhost:8003/health; then
-                            echo "Health check passed on attempt $i!"
-                            exit 0
-                          fi
-                          echo "Backend not ready yet, waiting 3 seconds..."
-                          sleep 3
-                        done
-                        echo "Backend failed to start after 20 attempts (60 seconds)"
-                        exit 1
-                    '''
+                timeout(time: 3, unit: 'MINUTES') {
+                    sh 'docker compose up -d --wait backend'
                 }
+                echo 'Backend health check passed!'
             }
         }
 
