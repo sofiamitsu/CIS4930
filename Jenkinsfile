@@ -18,16 +18,18 @@ pipeline {
             steps {
                 script {
                     sh 'docker compose up -d backend'
-                    sh '''
-                        for i in {1..10}; do
-                          if curl -f http://localhost:8003/health >/dev/null 2>&1; then
-                            echo 'Health check passed'
+                    sh '''#!/bin/bash
+                        echo "Waiting for backend to become healthy..."
+                        for i in {1..20}; do
+                          echo "Attempt $i of 20..."
+                          if curl -f http://localhost:8003/health; then
+                            echo "Health check passed on attempt $i!"
                             exit 0
                           fi
-                          echo 'Waiting for backend to become healthy...'
-                          sleep 2
+                          echo "Backend not ready yet, waiting 3 seconds..."
+                          sleep 3
                         done
-                        echo 'Backend failed to start in time'
+                        echo "Backend failed to start after 20 attempts (60 seconds)"
                         exit 1
                     '''
                 }
@@ -44,16 +46,18 @@ pipeline {
                     sh 'docker compose up -d'
 
                     echo 'Verifying deployment...'
-                    sh '''
-                        for i in {1..10}; do
-                          if curl -f http://localhost:8003/health >/dev/null 2>&1; then
-                            echo 'Deployment successful - application is healthy'
+                    sh '''#!/bin/bash
+                        echo "Waiting for deployed application to become healthy..."
+                        for i in {1..20}; do
+                          echo "Deployment verification attempt $i of 20..."
+                          if curl -f http://localhost:8003/health; then
+                            echo "Deployment successful! Application is healthy on attempt $i"
                             exit 0
                           fi
-                          echo 'Waiting for application to start...'
-                          sleep 2
+                          echo "Application not ready yet, waiting 3 seconds..."
+                          sleep 3
                         done
-                        echo 'Deployment verification failed'
+                        echo "Deployment verification failed after 20 attempts (60 seconds)"
                         exit 1
                     '''
                 }
