@@ -3,6 +3,12 @@ services:
     build: ./backend
     ports:
       - "8003:8003"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
 
   frontend:
     build: ./frontend
