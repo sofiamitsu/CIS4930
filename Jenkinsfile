@@ -10,7 +10,9 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'docker compose build'
+                timeout(time: 15, unit: 'MINUTES') {
+                    sh 'docker compose build'
+                }
             }
         }
 
